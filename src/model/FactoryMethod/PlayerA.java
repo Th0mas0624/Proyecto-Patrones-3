@@ -7,7 +7,7 @@ import model.Ball;
 import model.Observer.Observable;
 import model.Observer.Observer;
 
-public class PlayerA implements Player, Observable{
+public class PlayerA implements Player{
     
     /*
      * posX y posY: Posiciones del jugador

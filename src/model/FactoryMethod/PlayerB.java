@@ -1,12 +1,13 @@
 package model.FactoryMethod;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Ball;
 import model.Observer.Observable;
 import model.Observer.Observer;
 
-public class PlayerB implements Player, Observable{
+public class PlayerB implements Player{
     
     /*
      * posX y posY: Posiciones del jugador
@@ -18,6 +19,7 @@ public class PlayerB implements Player, Observable{
     private int health=3;
     private boolean agarre=false;
     private Ball ball;
+    private List<Observer> observers = new ArrayList<>();
     public PlayerB(int x, int y){
         this.posX = x;
         this.posY = y;

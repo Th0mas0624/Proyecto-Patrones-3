@@ -3,8 +3,10 @@ package model.FactoryMethod;
 import java.util.List;
 
 import model.Ball;
+import model.Observer.Observable;
+import model.Observer.Observer;
 
-public class PlayerB implements Player{
+public class PlayerB implements Player, Observable{
     
     /*
      * posX y posY: Posiciones del jugador
@@ -44,10 +46,37 @@ public class PlayerB implements Player{
     @Override
     public void lanzarPelota(){
         if (agarre){
-            this.ball.move(10, 10);
+            this.ball.move();
         }
     }
 
+    /*Logica para verificar si el jugador esta ponchado */
+    @Override
+    public void serPonchado(){
+
+    }
+
+
+     /* Funcion para agregar el observador Vida */
+    @Override
+    public void addObserver(Observer o){
+        observers.add(o);
+    }
+
+    /* Funcion para remover el observador */
+    @Override
+    public void removeObserver(Observer o){
+        observers.remove(o);
+    }
+
+    /* 
+     * Funcion encargada de notificar al otro jugador
+     * para ir eliminando vidas
+     */
+    @Override
+    public void notifyObservers(){
+
+    }
 
     /*Getters y Setters */
     public int getPosX() {

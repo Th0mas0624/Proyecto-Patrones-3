@@ -1,21 +1,26 @@
 package model.FactoryMethod;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Ball;
+import model.Observer.Observable;
+import model.Observer.Observer;
 
-public class PlayerA implements Player{
+public class PlayerA implements Player, Observable{
     
     /*
      * posX y posY: Posiciones del jugador
      * health: Vida del jugador
      * agarre: Verifica si agarro algun balon
      * ball: Es la pelota que esta agarrada por el jugador
+     * observers: 
      */
     private int posX, posY;
     private int health=3;
     private boolean agarre=false;
     private Ball ball;
+    private List<Observer> observers = new ArrayList<>();
     
     public PlayerA(int x, int y){
         this.posX = x;
@@ -45,10 +50,41 @@ public class PlayerA implements Player{
     @Override
     public void lanzarPelota(){
         if (agarre){
-            this.ball.move(10, 10);
+            this.ball.move();
         }
     }
 
+    /* Logica para determinar cuando el jugador sea ponchado */
+    @Override
+    public void serPonchado(){
+        this.health -= 1;
+        if(health <= 0){
+            /* Borrar al jugador o algo */
+        }
+    }
+
+    /* Funcion para agregar el observador Vida */
+    @Override
+    public void addObserver(Observer o){
+        observers.add(o);
+    }
+
+    /* Funcion para remover el observador */
+    @Override
+    public void removeObserver(Observer o){
+        observers.remove(o);
+    }
+
+    /* 
+     * Funcion encargada de notificar al otro jugador
+     * para ir eliminando vidas
+     */
+    @Override
+    public void notifyObservers(){
+
+    }
+
+    /* Getters y Setters */
     public int getPosX() {
         return posX;
     }

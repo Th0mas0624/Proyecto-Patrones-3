@@ -79,8 +79,6 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
-# Windows shortcuts
-*.lnk
 
 # Mono Auto Generated Files
 mono_crash.*

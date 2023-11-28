@@ -1,10 +1,18 @@
 package model.Decorator;
 
+import java.util.Random;
+
 import model.Ball;
 
 public class SpeedPowerUp implements PowerUp {
     private int x, y;
 
+    public SpeedPowerUp(){
+        // Inicializar las coordenadas con números aleatorios entre 100 y 400
+        Random random = new Random();
+        this.x = random.nextInt(301) + 100; // Números entre 100 y 400 (ambos inclusive)
+        this.y = random.nextInt(301) + 100;
+    }
 
     @Override
     public int getX() {
@@ -19,8 +27,5 @@ public class SpeedPowerUp implements PowerUp {
     @Override
     public void applyPowerUp(Ball ball) {
         ball.increaseSpeed();
-        /*Esto en vez de llamar a una clase de ball 
-         * es mejor hacer la logica aqui
-         */
     }
 }

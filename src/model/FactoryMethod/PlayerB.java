@@ -14,12 +14,15 @@ public class PlayerB implements Player{
      * health: Vida del jugador
      * agarre: Verifica si agarro algun balon
      * ball: Es la pelota que esta agarrada por el jugador
+     * observers: 
      */
     private int posX, posY;
     private int health=3;
     private boolean agarre=false;
     private Ball ball;
     private List<Observer> observers = new ArrayList<>();
+    private int puntaje = 0;
+
     public PlayerB(int x, int y){
         this.posX = x;
         this.posY = y;
@@ -52,14 +55,16 @@ public class PlayerB implements Player{
         }
     }
 
-    /*Logica para verificar si el jugador esta ponchado */
+    /* Logica para determinar cuando el jugador sea ponchado */
     @Override
     public void serPonchado(){
-
+        this.health -= 1;
+        if(health <= 0){
+            notifyObservers();
+        }
     }
 
-
-     /* Funcion para agregar el observador Vida */
+    /* Funcion para agregar el observador Vida */
     @Override
     public void addObserver(Observer o){
         observers.add(o);
@@ -77,10 +82,13 @@ public class PlayerB implements Player{
      */
     @Override
     public void notifyObservers(){
-
+        for (Observer observer : observers) {
+            // Notificar a cada observador sobre la pérdida de vida del jugador
+            observer.update(this);
+        }
     }
 
-    /*Getters y Setters */
+    /* Getters y Setters */
     public int getPosX() {
         return posX;
     }
@@ -112,4 +120,8 @@ public class PlayerB implements Player{
     public void setAgarre(boolean agarre) {
         this.agarre = agarre;
     }  
+
+    public int getPuntaje() {
+        return puntaje;
+    }
 }

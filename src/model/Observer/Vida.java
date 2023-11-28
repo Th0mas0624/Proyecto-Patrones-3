@@ -15,8 +15,11 @@ public class Vida implements Observer{
     }
 
     @Override
-    public void update() {
-         System.out.println("Vida del jugador actualizada: " + player.getHealth());
+    public void update(Observable player) {
+        if (player instanceof Player) {
+            Player updatedPlayer = (Player) player;
+            System.out.println("Vida del jugador actualizada: " + updatedPlayer.getHealth());
+        }
     }
     
 }

@@ -13,6 +13,9 @@ public interface Player extends Observable{
     public int getPosX();
     public int getPosY();
     public int getHealth();
+    public int getPuntaje();
+    public boolean isAgarre();
+    public void setAgarre(boolean agarre);
 
 }
 

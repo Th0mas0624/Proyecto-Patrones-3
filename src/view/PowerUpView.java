@@ -8,15 +8,14 @@ import java.awt.*;
 
 public class PowerUpView {
     private PowerUp powerUp;
-    private Color color;
+    private Image powerUpImage; // Imagen del poder
 
-    public PowerUpView(PowerUp powerUp, Color color) {
+    public PowerUpView(PowerUp powerUp, String imagePath) {
         this.powerUp = powerUp;
-        this.color = color;
+        this.powerUpImage = new ImageIcon(imagePath).getImage();
     }
 
     public void render(Graphics g) {
-        g.setColor(color);
-        g.fillRect(powerUp.getX(), powerUp.getY(), 15, 15); // Ejemplo: Renderizar un rectángulo para el poder
+        g.drawImage(powerUpImage, powerUp.getX(), powerUp.getY(), null);
     }
 }

@@ -8,15 +8,14 @@ import java.awt.*;
 
 public class BallView {
     private Ball ball;
-    private Color color;
+    private Image ballImage; // Imagen del balón
 
-    public BallView(Ball ball, Color color) {
+    public BallView(model.Ball ball, String imagePath) {
         this.ball = ball;
-        this.color = color;
+        this.ballImage = new ImageIcon(imagePath).getImage();
     }
 
     public void render(Graphics g) {
-        g.setColor(color);
-        g.fillOval(ball.getPosX(), ball.getPosY(), 10, 10); // Ejemplo: Renderizar un círculo para la pelota
+        g.drawImage(ballImage, ball.getPosX(), ball.getPosY(), null);
     }
 }

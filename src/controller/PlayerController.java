@@ -2,26 +2,27 @@ package controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import model.Ball;
+import model.Campo;
 import model.FactoryMethod.Player;
+import view.PlayerView;
 
-// PlayerController
 public class PlayerController implements KeyListener {
     private Player player;
-    private Ball ball;
+    private PlayerView playerView;
+    private Campo campo;
 
-    public PlayerController(Player player, Ball ball) {
+    public PlayerController(Player player, PlayerView playerView, Campo campo) {
         this.player = player;
-        this.ball = ball;
+        this.playerView = playerView;
+        this.campo = campo;
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        System.out.println("Key Pressed");
+
         switch (keyCode) {
             case KeyEvent.VK_W:
                 player.move(0, -10); // Mover hacia arriba
@@ -36,13 +37,17 @@ public class PlayerController implements KeyListener {
                 player.move(10, 0); // Mover hacia la derecha
                 break;
             case KeyEvent.VK_E:
-                if (!ball.isEnMovimiento()) {
-                    ball.move(); // Lanzar la pelota
+                if (player.isAgarre()) {
+                    // Si el jugador ya tiene la pelota, lanzarla
+                    player.lanzarPelota();
+                } else {
+                    player.agarrarPelota(campo.getBalls());
                 }
                 break;
-            // Asegúrate de que la vista se actualice después del movimiento
-            
         }
+
+        // Notificar a la vista después de que el jugador se haya movido o lanzado la pelota
+        playerView.repaint();
     }
 
     @Override

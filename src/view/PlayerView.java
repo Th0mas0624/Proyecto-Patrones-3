@@ -4,17 +4,18 @@ import model.FactoryMethod.Player;
 import javax.swing.*;
 import java.awt.*;
 
-public class PlayerView {
+//Player View
+public class PlayerView extends JPanel{
     private Player player;
-    private Color color;
+    private Image playerImage; // Imagen del jugador
 
-    public PlayerView(Player player, Color color) {
+    public PlayerView(Player player, String imagePath) {
         this.player = player;
-        this.color = color;
+        this.playerImage = new ImageIcon(imagePath).getImage();
     }
 
-    public void render(Graphics g) {
-        g.setColor(color);
-        g.fillRect(player.getPosX(), player.getPosY(), 20, 20); // Ejemplo: Renderizar un rectángulo para el jugador
+    @Override
+    public void paintComponent(Graphics g) {
+        g.drawImage(playerImage, player.getPosX(), player.getPosY(), null);
     }
 }

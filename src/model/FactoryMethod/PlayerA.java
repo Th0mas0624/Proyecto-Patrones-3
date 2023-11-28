@@ -21,7 +21,8 @@ public class PlayerA implements Player{
     private boolean agarre=false;
     private Ball ball;
     private List<Observer> observers = new ArrayList<>();
-    
+    private int puntaje = 0;
+
     public PlayerA(int x, int y){
         this.posX = x;
         this.posY = y;
@@ -59,7 +60,7 @@ public class PlayerA implements Player{
     public void serPonchado(){
         this.health -= 1;
         if(health <= 0){
-            /* Borrar al jugador o algo */
+            notifyObservers();
         }
     }
 
@@ -81,7 +82,10 @@ public class PlayerA implements Player{
      */
     @Override
     public void notifyObservers(){
-
+        for (Observer observer : observers) {
+            // Notificar a cada observador sobre la pérdida de vida del jugador
+            observer.update(this);
+        }
     }
 
     /* Getters y Setters */
@@ -116,4 +120,8 @@ public class PlayerA implements Player{
     public void setAgarre(boolean agarre) {
         this.agarre = agarre;
     }  
+
+    public int getPuntaje() {
+        return puntaje;
+    }
 }

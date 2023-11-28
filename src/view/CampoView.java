@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CampoView extends JPanel{
-     private List<PlayerView> playerViews;
+    private List<PlayerView> playerViews;
     private BallView ballView;
     private List<PowerUpView> powerUpViews;
 
@@ -40,7 +40,7 @@ public class CampoView extends JPanel{
 
     private void renderPlayers(Graphics g) {
         for (PlayerView playerView : playerViews) {
-            playerView.render(g);
+            playerView.repaint();
         }
     }
 

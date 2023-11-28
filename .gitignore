@@ -77,6 +77,3 @@ $RECYCLE.BIN/
 *.msp
 
 
-# Mono Auto Generated Files
-mono_crash.*
-

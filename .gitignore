@@ -16,8 +16,6 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs
-hs_err_pid*
 
 # IntelliJ
 .idea/

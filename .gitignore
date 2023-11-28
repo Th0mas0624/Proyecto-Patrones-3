@@ -60,9 +60,6 @@ bin/
 *.VC.db
 *.VC.opendb
 
-# BlueJ project files
-*.bpk
-
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

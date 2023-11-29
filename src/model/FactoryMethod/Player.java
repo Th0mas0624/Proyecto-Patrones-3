@@ -6,9 +6,13 @@ import model.Ball;
 import model.Observer.Observable;
 
 public interface Player extends Observable{
+    // Principales metodos
     public void move(int x,int y);
     public void agarrarPelota(List<Ball> balls);
     public void lanzarPelota();
+
+
+    // otros
     public void serPonchado();
     public int getPosX();
     public int getPosY();

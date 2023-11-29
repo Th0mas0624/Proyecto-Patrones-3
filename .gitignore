@@ -4,9 +4,6 @@
 # Log files
 *.log
 
-# BlueJ files
-*.ctxt
-
 # Package Files #
 *.jar
 *.war
@@ -58,20 +55,38 @@ bin/
 *.VC.db
 *.VC.opendb
 
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+# Compiled class file
+*.class
 
-# Folder config file
-Desktop.ini
+# Log file
+*.log
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# IntelliJ-specific files
+.idea/
+*.iml
+*.ipr
+*.iws
+.idea_modules/
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+# Eclipse-specific files
+.classpath
+.project
+.settings/
+
+# NetBeans-specific files
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# VSCode-specific files
+.vscode/
+
+# Compiled Java binaries
+bin/
+out/
+
 
 

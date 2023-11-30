@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import model.FactoryMethod.Player;
+import util.Constants;
 import view.GamePanel;
 
 public class KeyboardInputs implements KeyListener {
@@ -11,6 +12,7 @@ public class KeyboardInputs implements KeyListener {
 	private GamePanel gamePanel;
 	private Player player;
 	private Player player2;
+	
 	public KeyboardInputs(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
 		this.player = gamePanel.getGame().getPlayers().get(0);
@@ -38,19 +40,23 @@ public class KeyboardInputs implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 
-		
+		int spaceMovement = Constants.MOVEMENT_PLAYERS;
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
-			player.move(0, -10);
+			if (player.getPosY() > Constants.PLAYER_UPPER_LIMIT)
+				player.move(0, -spaceMovement);
+				System.out.println(player.getPosY());
 			break;
 		case KeyEvent.VK_A:
-			player.move(-10, 0);
+			player.move(-spaceMovement, 0);
 			break;
 		case KeyEvent.VK_S:
-			player.move(0, 10);
+			if (player.getPosY() < Constants.PLAYER_LOWER_LIMIT)
+				player.move(0, spaceMovement);
 			break;
 		case KeyEvent.VK_D:
-			player.move(10, 0);
+			if (player.getPosX() < Constants.PLAYER_RIGHT_LIMIT)
+			player.move(spaceMovement, 0);
 			break;
 		case KeyEvent.VK_Z:
 			if (player.isAgarre()) {
@@ -64,16 +70,20 @@ public class KeyboardInputs implements KeyListener {
             System.out.println("X");
 			break;
 		case KeyEvent.VK_I:
-			player2.move(0, -10);
+			if (player2.getPosY() > Constants.PLAYER_UPPER_LIMIT)
+				player2.move(0, -spaceMovement);
 			break;
 		case KeyEvent.VK_J:
-			player2.move(-10, 0);
+			if (player2.getPosX() >= 560)
+				player2.move(-spaceMovement, 0);
+				System.out.println(player2.getPosX());
 			break;
 		case KeyEvent.VK_K:
-			player2.move(0, 10);
+			if (player2.getPosY() < Constants.PLAYER_LOWER_LIMIT)
+				player2.move(0, spaceMovement);
 			break;
 		case KeyEvent.VK_L:
-			player2.move(10, 0);
+			player2.move(spaceMovement, 0);
 			break;
 		}
 

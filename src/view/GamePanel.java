@@ -44,7 +44,6 @@ public class GamePanel extends JPanel {
         playerView.render(g);
         playerView2.render(g);
         ballsView.render(g);
-        //System.out.println(game.getPlayer().getPosX());
         repaint();
     }
 

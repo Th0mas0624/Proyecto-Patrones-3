@@ -20,7 +20,7 @@ public class CampoView {
 
     private void loadImage(){
         // Lógica para cargar la imagen de fondo
-        backgroundImage = new ImageIcon("assets/cancha.png").getImage();
+        backgroundImage = new ImageIcon("assets/court.png").getImage();
         // Establecer el tamaño del CampoView al tamaño de la imagen de fondo
     }
     

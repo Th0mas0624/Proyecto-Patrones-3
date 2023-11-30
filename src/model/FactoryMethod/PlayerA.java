@@ -42,7 +42,7 @@ public class PlayerA implements Player{
     public void agarrarPelota(List<Ball> balls){
 
         for (Ball ball : balls) {
-            if(ball.getPosX() == posX && ball.getPosY() == posY){
+            if((((ball.getPosX() - posX) >= -30) && ((ball.getPosX() - posX) <= 30)) && (((ball.getPosY() - posY) >= -30) && ((ball.getPosY() - posY) <= 30))){
                 this.agarre = true;
                 this.ball = ball;
                 System.out.println("agarro la pelota");

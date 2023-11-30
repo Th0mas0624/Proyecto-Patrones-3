@@ -14,27 +14,27 @@ import util.Constants;
 
 public class BallView {
 
-    private Ball game;
-    private Image playerImage;
+    private Ball ball;
+    private Image ballImage;
 
-    public BallView(Ball game){
-        this.game = game;
+    public BallView(Ball ball){
+        this.ball = ball;
         loadImage();
     }
     
     private void loadImage(){
-         // Cargar la imagen del jugador
-        playerImage = new ImageIcon(game.getPathImg()).getImage();
+         // Cargar la imagen del balon
+        ballImage = new ImageIcon(ball.getPathImg()).getImage();
         // Establecer el tamaño del PlayerView al tamaño de la imagen del jugador
     }
     
     public void render(Graphics g) {
         // Calcular las coordenadas y dimensiones escaladas de la imagen
-        int scaledWidth = Constants.PLAYER_WIDTH;
-        int scaledHeight = Constants.PLAYER_HEIGHT;
+        int scaledWidth = Constants.BALL_WIDTH;
+        int scaledHeight = Constants.BALL_HEIGHT;
 
-        // Dibujar la imagen del jugador escalada en las coordenadas iniciales
-        g.drawImage(playerImage, game.getPosX(), game.getPosY(), scaledWidth, scaledHeight, null);    
+        // Dibujar la imagen del balon escalada en las coordenadas iniciales
+        g.drawImage(ballImage, ball.getPosX(), ball.getPosY(), scaledWidth, scaledHeight, null);    
 
     }
 }

@@ -1,6 +1,7 @@
 package model;
 
 import model.Decorator.PowerUp;
+import util.Constants;
 
 public class Ball {
     
@@ -14,10 +15,8 @@ public class Ball {
     private int velocidadX;
     private int velocidadY;
 
-    //limites del campo, 
-    private int anchoDelCampo=1200;
-    private int alturaDelCampo=700;
-    private String pathImg =  "assets\\spiderman.png";
+ 
+    private String pathImg =  "assets\\ball.png";
     public Ball(int x, int y){
         this.posX = x;
         this.posY = y;
@@ -47,12 +46,12 @@ public class Ball {
             // Agregar lógica para detectar colisiones con los bordes del campo
             // Puedes ajustar según las dimensiones de tu campo
             
-            if (posX <= 0 || posX >= anchoDelCampo) {
+            if (posX <= 0 || posX >= Constants.FIELD_WIDTH) {
                 // La pelota chocó con el borde izquierdo o derecho, cambiar dirección
                 detenerMovimiento();
             }
 
-            if (posY <= 0 || posY >= alturaDelCampo) {
+            if (posY <= 0 || posY >= Constants.FIELD_HEIGHT) {
                 // La pelota chocó con el borde superior o inferior, cambiar dirección
                 detenerMovimiento();
             }

@@ -45,6 +45,7 @@ public class PlayerA implements Player{
             if(ball.getPosX() == posX && ball.getPosY() == posY){
                 this.agarre = true;
                 this.ball = ball;
+                System.out.println("agarro la pelota");
             }
         }
     }
@@ -54,6 +55,8 @@ public class PlayerA implements Player{
     public void lanzarPelota(){
         if (agarre){
             this.ball.move();
+            System.out.println("solto pelota");
+            this.agarre = false;
         }
     }
 

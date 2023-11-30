@@ -15,9 +15,9 @@ public class Ball {
     private int velocidadY;
 
     //limites del campo, 
-    private int anchoDelCampo;
-    private int alturaDelCampo;
-
+    private int anchoDelCampo=1200;
+    private int alturaDelCampo=700;
+    private String pathImg =  "assets\\spiderman.png";
     public Ball(int x, int y){
         this.posX = x;
         this.posY = y;
@@ -32,8 +32,9 @@ public class Ball {
         if (!enMovimiento) {
             enMovimiento = true;
             // Inicializar la velocidad (puedes ajustar según tus necesidades)
-            velocidadX = 5;
-            velocidadY = 5;
+            velocidadX = 10;
+            velocidadY = 10;
+            updatePosition();
         }
     }
 
@@ -48,12 +49,12 @@ public class Ball {
             
             if (posX <= 0 || posX >= anchoDelCampo) {
                 // La pelota chocó con el borde izquierdo o derecho, cambiar dirección
-                velocidadX = -velocidadX;
+                detenerMovimiento();
             }
 
             if (posY <= 0 || posY >= alturaDelCampo) {
                 // La pelota chocó con el borde superior o inferior, cambiar dirección
-                velocidadY = -velocidadY;
+                detenerMovimiento();
             }
         }
     }
@@ -102,5 +103,8 @@ public class Ball {
         return enMovimiento;
     }
 
+    public String getPathImg() {
+        return pathImg;
+    }
     
 }

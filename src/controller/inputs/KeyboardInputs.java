@@ -13,8 +13,8 @@ public class KeyboardInputs implements KeyListener {
 	private Player player2;
 	public KeyboardInputs(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
-		this.player = gamePanel.getGame().getPlayer();
-		this.player2 = gamePanel.getGame().getPlayer2();
+		this.player = gamePanel.getGame().getPlayers().get(0);
+		this.player2 = gamePanel.getGame().getPlayers().get(1);
 	}
 	
 	
@@ -53,8 +53,13 @@ public class KeyboardInputs implements KeyListener {
 			player.move(10, 0);
 			break;
 		case KeyEvent.VK_Z:
-			System.out.println("Z");			
-			break;
+			if (player.isAgarre()) {
+				// Si el jugador ya tiene la pelota, lanzarla
+				player.lanzarPelota();
+			} else {
+				player.agarrarPelota(gamePanel.getGame().getBalls());
+			}
+			break;		
 		case KeyEvent.VK_X:
             System.out.println("X");
 			break;

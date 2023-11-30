@@ -35,17 +35,17 @@ public class Ball {
         agarrada = true;
         // Crear un temporizador que actualice la posición de la pelota cada 100 milisegundos
         Timer timer = new Timer(100, new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (agarrada) {
-                posX = player.getPosX();
-                posY = player.getPosY();
-                //repaint();  // Asegúrate de llamar a repaint para actualizar la vista
-            } else {
-                ((Timer) e.getSource()).stop();  // Detener el temporizador cuando ya no esté agarrada
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (agarrada) {
+                    posX = player.getPosX();
+                    posY = player.getPosY();
+                    //repaint();  // Asegúrate de llamar a repaint para actualizar la vista
+                } else {
+                    ((Timer) e.getSource()).stop();  // Detener el temporizador cuando ya no esté agarrada
+                }
             }
-        }
-    });
+        });
 
     // Iniciar el temporizador
     timer.start();
@@ -66,27 +66,25 @@ public class Ball {
     
     /* Metodo para el lanzamiento de la pelota*/
     public void updatePosition() {
-        if (enMovimiento) {
-            while (enMovimiento) {
-                // Actualizar continuamente la posición de la pelota
-                posX += velocidadX;
-                posY += velocidadY;
+        // Usar un temporizador para actualizar la posición a intervalos regulares
+        Timer timer = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (enMovimiento) {
+                    posX += velocidadX;
+                    posY += velocidadY;
 
-                // Agregar lógica para detectar colisiones con los bordes del campo
-                // Puedes ajustar según las dimensiones de tu campo
-                
-                if (posX <= 0 || posX >= Constants.PLAYER_RIGHT_LIMIT) {
-                    // La pelota chocó con el borde izquierdo o derecho, cambiar dirección
-                    detenerMovimiento();
-                }
-
-                if (posY <= 0 || posY >= Constants.PLAYER_LOWER_LIMIT) {
-                    // La pelota chocó con el borde superior o inferior, cambiar dirección
-                    detenerMovimiento();
+                    // Verificar colisiones con los bordes del campo
+                    if (posX <= 0 || posX >= Constants.PLAYER_RIGHT_LIMIT || posY <= 0 || posY >= Constants.PLAYER_LOWER_LIMIT) {
+                        detenerMovimiento();
+                    }
+                    
+                    //notifyObservers(); // Notificar cambios a los observadores (por ejemplo, la vista)
                 }
             }
-            
-        }
+        });
+
+        timer.start();
     }
     /*Una vez que el balon llega a su destino se detiene
      * o en caso de que un jugador lo detenga antes

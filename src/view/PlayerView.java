@@ -22,7 +22,7 @@ public class PlayerView {
     
     private void loadImage(){
          // Cargar la imagen del jugador
-        playerImage = new ImageIcon("assets/player_sprite.png").getImage();
+        playerImage = new ImageIcon(game.getPlayer().getPathImg()).getImage();
         // Establecer el tamaño del PlayerView al tamaño de la imagen del jugador
     }
     

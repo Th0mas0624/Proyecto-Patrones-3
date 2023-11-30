@@ -1,40 +1,33 @@
-// CampoView.java
 package view;
 
-import util.*;
+import java.awt.Graphics;
+import java.awt.Image;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.swing.ImageIcon;
 
-public class CampoView extends JPanel {
+import launcher.Game;
+import util.Constants;
+
+public class CampoView {
+    private Game game;
     private Image backgroundImage;
-    private List<PlayerView> playerViews;
 
-    public CampoView() {
+    public CampoView(Game game){
+        this.game = game;
+        loadImage();
+    }
+
+
+    private void loadImage(){
         // Lógica para cargar la imagen de fondo
-        backgroundImage = Toolkit.getDefaultToolkit().getImage("assets/cancha.png");
+        backgroundImage = new ImageIcon("assets/cancha.png").getImage();
         // Establecer el tamaño del CampoView al tamaño de la imagen de fondo
-        setPreferredSize(new Dimension(Constants.FIELD_WIDTH, Constants.FIELD_HEIGHT));
+    }
+    
 
-        // Inicializar la lista de PlayerViews
-        playerViews = new ArrayList<>();
-
-        // Agregar un PlayerView de ejemplo (puedes hacerlo dinámicamente según tus necesidades)
-        PlayerView playerView = new PlayerView();
-        playerViews.add(playerView);
+    public void render(Graphics g) {
+        g.drawImage(backgroundImage, 0, 0, Constants.FIELD_WIDTH, Constants.FIELD_HEIGHT, null);
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        // Dibujar la imagen de fondo
-        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-
-        // Dibujar cada PlayerView en la lista
-        for (PlayerView playerView : playerViews) {
-            playerView.paintComponent(g);
-        }
-    }
+    
 }

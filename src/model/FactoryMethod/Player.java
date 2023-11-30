@@ -20,6 +20,7 @@ public interface Player extends Observable{
     public int getPuntaje();
     public boolean isAgarre();
     public void setAgarre(boolean agarre);
+    public String getPathImg();
 
 }
 

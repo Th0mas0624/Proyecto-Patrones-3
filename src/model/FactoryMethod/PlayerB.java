@@ -124,4 +124,10 @@ public class PlayerB implements Player{
     public int getPuntaje() {
         return puntaje;
     }
+
+    @Override
+    public String getPathImg() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPathImg'");
+    }
 }

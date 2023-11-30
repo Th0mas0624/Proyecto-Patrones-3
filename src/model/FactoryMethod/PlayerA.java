@@ -23,6 +23,8 @@ public class PlayerA implements Player{
     private List<Observer> observers = new ArrayList<>();
     private int puntaje = 0;
 
+    private String pathImg = "assets/spiderman.png";
+
     public PlayerA(int x, int y){
         this.posX = x;
         this.posY = y;
@@ -124,4 +126,9 @@ public class PlayerA implements Player{
     public int getPuntaje() {
         return puntaje;
     }
+
+    public String getPathImg() {
+        return pathImg;
+    }
+    
 }

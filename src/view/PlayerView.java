@@ -1,21 +1,39 @@
 package view;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
+import launcher.Game;
 import model.FactoryMethod.Player;
-import javax.swing.*;
-import java.awt.*;
+import util.Constants;
 
-//Player View
-public class PlayerView extends JPanel{
-    private Player player;
-    private Image playerImage; // Imagen del jugador
+public class PlayerView {
 
-    public PlayerView(Player player, String imagePath) {
-        this.player = player;
-        this.playerImage = new ImageIcon(imagePath).getImage();
+    private Player game;
+    private Image playerImage;
+
+    public PlayerView(Player game){
+        this.game = game;
+        loadImage();
     }
+    
+    private void loadImage(){
+         // Cargar la imagen del jugador
+        playerImage = new ImageIcon(game.getPathImg()).getImage();
+        // Establecer el tamaño del PlayerView al tamaño de la imagen del jugador
+    }
+    
+    public void render(Graphics g) {
+        // Calcular las coordenadas y dimensiones escaladas de la imagen
+        int scaledWidth = Constants.PLAYER_WIDTH;
+        int scaledHeight = Constants.PLAYER_HEIGHT;
 
-    @Override
-    public void paintComponent(Graphics g) {
-        g.drawImage(playerImage, player.getPosX(), player.getPosY(), null);
+        // Dibujar la imagen del jugador escalada en las coordenadas iniciales
+        g.drawImage(playerImage, game.getPosX(), game.getPosY(), scaledWidth, scaledHeight, null);    
+
     }
 }

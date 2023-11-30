@@ -23,6 +23,8 @@ public class PlayerB implements Player{
     private List<Observer> observers = new ArrayList<>();
     private int puntaje = 0;
 
+    private String pathImg = "assets/player_sprite.png";
+
     public PlayerB(int x, int y){
         this.posX = x;
         this.posY = y;
@@ -123,5 +125,10 @@ public class PlayerB implements Player{
 
     public int getPuntaje() {
         return puntaje;
+    }
+
+    @Override
+    public String getPathImg() {
+        return pathImg;
     }
 }

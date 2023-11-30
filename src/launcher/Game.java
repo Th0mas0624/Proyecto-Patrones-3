@@ -28,7 +28,7 @@ public class Game {
         PlayerFactory playerFactory2 = new PlayerBFactory();
         players.add(playerFactory.createPlayer(Constants.INITIAL_PLAYER_X, Constants.INITIAL_PLAYER_Y));
         players.add(playerFactory2.createPlayer(Constants.INITIAL_PLAYER_X_2, Constants.INITIAL_PLAYER_Y_2));
-        balls.add(new Ball(500, 500));
+        balls.add(new Ball(200, 300));
 
     }
 

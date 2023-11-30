@@ -56,7 +56,7 @@ public class KeyboardInputs implements KeyListener {
 			break;
 		case KeyEvent.VK_D:
 			if (player.getPosX() < Constants.PLAYER_RIGHT_LIMIT)
-			player.move(spaceMovement, 0);
+				player.move(spaceMovement, 0);
 			break;
 		case KeyEvent.VK_Z:
 			if (player.isAgarre()) {

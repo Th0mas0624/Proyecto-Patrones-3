@@ -40,11 +40,12 @@ public class PlayerA implements Player{
     /*Verificacion para poder agarrar una pelota */
     @Override
     public void agarrarPelota(List<Ball> balls){
-
         for (Ball ball : balls) {
+            /*Para que el jugador pueda coger la pelota en cuadrado de 30 x 30 pixeles */
             if((((ball.getPosX() - posX) >= -30) && ((ball.getPosX() - posX) <= 30)) && (((ball.getPosY() - posY) >= -30) && ((ball.getPosY() - posY) <= 30))){
                 this.agarre = true;
                 this.ball = ball;
+                this.ball.pelotaAgarrada(this);
                 System.out.println("agarro la pelota");
             }
         }

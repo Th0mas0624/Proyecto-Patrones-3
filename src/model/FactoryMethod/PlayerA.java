@@ -6,6 +6,7 @@ import java.util.List;
 import model.Ball;
 import model.Observer.Observable;
 import model.Observer.Observer;
+import util.Constants;
 
 public class PlayerA implements Player{
     
@@ -53,10 +54,10 @@ public class PlayerA implements Player{
 
     /*Logica para lanzar la pelota */
     @Override
-    public void lanzarPelota(){
+    public void lanzarPelota(int targetX, int targetY){
         if (agarre){
-            this.ball.move();
-            System.out.println("solto pelota");
+            this.ball.move(targetX, targetY);
+            System.out.println("Lanzo la pelota");
             this.agarre = false;
         }
     }

@@ -1,6 +1,11 @@
 package util;
 
 public class Constants {
+   
+    public static final int RADIO_PONCHAR =50;
+    public static final int RADIO_TARGET_BALL= 10;
+    
+
     // Campo / cancha
     public static final int FIELD_WIDTH = 1200;
     public static final int FIELD_HEIGHT = 700;

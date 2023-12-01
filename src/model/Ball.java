@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.Decorator.PowerUp;
 import model.FactoryMethod.Player;
+import model.FactoryMethod.PlayerA;
 import util.Constants;
 
 public class Ball {
@@ -20,7 +21,7 @@ public class Ball {
     private int velocidadY;
     private boolean agarrada=false;
  
-    private String pathImg =  "assets\\ball.png";
+    private String pathImg =  "assets/ball.png";
     public Ball(int x, int y){
         this.posX = x;
         this.posY = y;
@@ -34,58 +35,67 @@ public class Ball {
     public void pelotaAgarrada(Player player){
         agarrada = true;
         // Crear un temporizador que actualice la posición de la pelota cada 100 milisegundos
-        Timer timer = new Timer(100, new ActionListener() {
+        Timer timer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (agarrada) {
-                    posX = player.getPosX();
+                    if(player instanceof PlayerA ){
+                        posX = player.getPosX()+80;
+                    }else{
+                        posX = player.getPosX()-50;
+                    }
+                    
                     posY = player.getPosY();
-                    //repaint();  // Asegúrate de llamar a repaint para actualizar la vista
                 } else {
                     ((Timer) e.getSource()).stop();  // Detener el temporizador cuando ya no esté agarrada
                 }
             }
         });
 
-    // Iniciar el temporizador
-    timer.start();
+        // Iniciar el temporizador
+        timer.start();
 
     }
     /* Logica encargada de poner en movimiento el balon */
-    public void move(){
+    public void move(int targetX, int targetY) {
         if (!enMovimiento) {
             enMovimiento = true;
             agarrada = false;
-            // Inicializar la velocidad (puedes ajustar según tus necesidades)
-            velocidadX = 10;
-            velocidadY = 10;
-            updatePosition();
+            // Calcular la dirección hacia las coordenadas del jugador 2
+            double direccionX = (targetX - posX) / Math.hypot(targetX - posX, targetY - posY);
+            double direccionY = (targetY - posY) / Math.hypot(targetX - posX, targetY - posY);
+            // Establecer las velocidades según la dirección calculada
+            velocidadX =(int) (5 * direccionX);  // Ajusta la velocidad según sea necesario
+            velocidadY = (int) (5 * direccionY);  // Ajusta la velocidad según sea necesario
+            updatePosition(targetX, targetY);
         }
     }
 
-    
-    /* Metodo para el lanzamiento de la pelota*/
-    public void updatePosition() {
-        // Usar un temporizador para actualizar la posición a intervalos regulares
-        Timer timer = new Timer(100, new ActionListener() {
+    public void updatePosition(int targetX, int targetY) {
+        Timer timer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (enMovimiento) {
                     posX += velocidadX;
                     posY += velocidadY;
-
-                    // Verificar colisiones con los bordes del campo
-                    if (posX <= 0 || posX >= Constants.PLAYER_RIGHT_LIMIT || posY <= 0 || posY >= Constants.PLAYER_LOWER_LIMIT) {
+                    // Verificar si la pelota está dentro del radio de tolerancia del objetivo
+                    if (Math.abs(posX - targetX) <= Constants.RADIO_TARGET_BALL) {
                         detenerMovimiento();
+                        ((Timer) e.getSource()).stop();  // Detener el temporizador cuando llega a su destino
                     }
-                    
-                    //notifyObservers(); // Notificar cambios a los observadores (por ejemplo, la vista)
+                    // Verificar colisiones con los bordes del campo
+                    if (posX <= 0 || posX >= Constants.FIELD_WIDTH || posY <= 0 || posY >= Constants.FIELD_HEIGHT) {
+                        detenerMovimiento();
+                        ((Timer) e.getSource()).stop();  // Detener el temporizador cuando llega a su destino
+                    }
                 }
             }
         });
-
+    
         timer.start();
     }
+    
+
     /*Una vez que el balon llega a su destino se detiene
      * o en caso de que un jugador lo detenga antes
      */

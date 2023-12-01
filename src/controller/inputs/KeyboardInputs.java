@@ -45,7 +45,6 @@ public class KeyboardInputs implements KeyListener {
 		case KeyEvent.VK_W:
 			if (player.getPosY() > Constants.PLAYER_UPPER_LIMIT)
 				player.move(0, -spaceMovement);
-				System.out.println(player.getPosY());
 			break;
 		case KeyEvent.VK_A:
 			player.move(-spaceMovement, 0);
@@ -58,17 +57,26 @@ public class KeyboardInputs implements KeyListener {
 			if (player.getPosX() < Constants.PLAYER_RIGHT_LIMIT)
 				player.move(spaceMovement, 0);
 			break;
-		case KeyEvent.VK_Z:
+		case KeyEvent.VK_E:
 			if (player.isAgarre()) {
 				// Si el jugador ya tiene la pelota, lanzarla
-				player.lanzarPelota();
+				player.lanzarPelota(player2.getPosX(), player2.getPosY() );
 			} else {
 				player.agarrarPelota(gamePanel.getGame().getBalls());
 			}
 			break;		
-		case KeyEvent.VK_X:
-            System.out.println("X");
+		case KeyEvent.VK_U:
+            if (player2.isAgarre()) {
+				// Si el jugador ya tiene la pelota, lanzarla
+				player2.lanzarPelota(player.getPosX(), player.getPosY() );
+				System.out.println(player.getPosX()+" "+ player.getPosY());
+			} else {
+				player2.agarrarPelota(gamePanel.getGame().getBalls());
+			}
 			break;
+		
+		//--------------------------------------------------------------------------------
+		// JUGADOR 2
 		case KeyEvent.VK_I:
 			if (player2.getPosY() > Constants.PLAYER_UPPER_LIMIT)
 				player2.move(0, -spaceMovement);
@@ -76,7 +84,6 @@ public class KeyboardInputs implements KeyListener {
 		case KeyEvent.VK_J:
 			if (player2.getPosX() >= 560)
 				player2.move(-spaceMovement, 0);
-				System.out.println(player2.getPosX());
 			break;
 		case KeyEvent.VK_K:
 			if (player2.getPosY() < Constants.PLAYER_LOWER_LIMIT)

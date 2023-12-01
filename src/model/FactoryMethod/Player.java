@@ -9,7 +9,7 @@ public interface Player extends Observable{
     // Principales metodos
     public void move(int x,int y);
     public void agarrarPelota(List<Ball> balls);
-    public void lanzarPelota();
+    public void lanzarPelota(int targetX, int targetY);
 
 
     // otros

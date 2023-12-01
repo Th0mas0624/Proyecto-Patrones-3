@@ -40,20 +40,24 @@ public class PlayerB implements Player{
     /*Verificacion para poder agarrar una pelota */
     @Override
     public void agarrarPelota(List<Ball> balls){
-
         for (Ball ball : balls) {
-            if(ball.getPosX() == posX && ball.getPosY() == posY){
+            /*Para que el jugador pueda coger la pelota en cuadrado de 30 x 30 pixeles */
+            if((((ball.getPosX() - posX) >= -30) && ((ball.getPosX() - posX) <= 30)) && (((ball.getPosY() - posY) >= -30) && ((ball.getPosY() - posY) <= 30))){
                 this.agarre = true;
                 this.ball = ball;
+                this.ball.pelotaAgarrada(this);
+                System.out.println("agarro la pelota");
             }
         }
     }
 
     /*Logica para lanzar la pelota */
     @Override
-    public void lanzarPelota(){
+    public void lanzarPelota(int targetX, int targetY){
         if (agarre){
-            this.ball.move();
+            this.ball.move(targetX, targetY);
+            System.out.println("Lanzo la pelota");
+            this.agarre = false;
         }
     }
 
@@ -127,8 +131,8 @@ public class PlayerB implements Player{
         return puntaje;
     }
 
-    @Override
     public String getPathImg() {
         return pathImg;
     }
+    
 }

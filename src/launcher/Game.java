@@ -40,9 +40,6 @@ public class Game {
 
         campo.handlePlayerCollisions();
 
-        
-
-
     }
 
 

@@ -68,6 +68,7 @@ public class PlayerA implements Player{
         this.health -= 1;
         if(health <= 0){
             notifyObservers();
+            
         }
     }
 

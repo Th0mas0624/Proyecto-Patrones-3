@@ -15,7 +15,7 @@ public class Constants {
     public static final int PLAYER_HEIGHT = 100; // Altura del jugador
 
     // Movimiento jugador 
-    public static final int MOVEMENT_PLAYERS = 10;
+    public static final int MOVEMENT_PLAYERS = 2;
 
      // Ball / Pelota
     public static final int BALL_WIDTH = 50; // Ancho del balon
